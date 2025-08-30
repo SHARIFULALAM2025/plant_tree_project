@@ -168,3 +168,47 @@ const products = [
         id: 23,
     },
 ];
+let cartCount = 0;
+let totalSum = 0;
+function addButton(price) {
+    cartCount++;
+    totalSum=totalSum+price
+    document.getElementById('cart-count').innerText = cartCount;
+    document.getElementById('sum-total').innerText =totalSum;
+    document.getElementById('cart-total').innerText = cartCount;
+
+}
+
+
+
+function showProduct() {
+    for (const element of products) {
+        // console.log(element);
+        const productCards = document.createElement('div');
+        productCards.innerHTML = `
+        <div class="card bg-base-100 shadow-sm product-card">
+          <figure class="px-10 pt-10">
+            <img
+              src="${element.img_url}"
+              alt="Shoes"
+              class="rounded-xl"
+            />
+          </figure>
+          <div class="card-body items-center text-center">
+            <h2 class="card-title">${element.name}</h2>
+            <div class="flex justify-center gap-3">
+
+              <p class="text-xl">${element.price}</p>
+            </div>
+            <div class="card-actions">
+              <button onclick="addButton(${element.price})" class="btn btn-success text-white">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        `
+        document.getElementById('product-container').appendChild(productCards);
+
+    }
+}
+showProduct();
